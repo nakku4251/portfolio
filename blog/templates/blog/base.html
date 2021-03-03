@@ -1,3 +1,4 @@
+{% load blog %}
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,11 +13,24 @@
     <div class="hero-body">
         <div class="container">
             <h1 class="title"><a href="{% url 'blog:post_list' %}">Hogeブログ</a></h1>
-            <h2 class="subtitle">色々な記事を書いています。</h2>
+            <h2 class="subtitle">色々な記事を書いています</h2>
         </div>
     </div>
 </header>
 
+<section class="level">
+    <div class="level-left"></div>
+    <div class="level-right">
+        <div class="level-item tabs">
+            <ul>
+                <li><a href="{% url 'blog:post_create' %}">新規作成</a></li>
+                <li><a>削除</a></li>
+                <li><a>更新</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="level-right"></div>
+</section>
 <div class="section">
     <div class="container">
         <div class="columns">
@@ -24,7 +38,8 @@
                 {% block content %}{% endblock %}
             </main>
             <aside class="column is-offset-1 is-4">
-                <!--　サイドバー　-->
+                {% create_category_and_tag_list %}
+                {% create_search_form request %}
             </aside>
         </div>
     </div>
