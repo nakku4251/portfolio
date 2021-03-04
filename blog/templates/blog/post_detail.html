@@ -2,7 +2,7 @@
 
 {% block content %}
         <article class="box">
-            <h1><{{ post.title }}</h1>
+            <h1>{{ post.title }}</h1>
             <p>投稿者: {{ post.writer }}</p>
             <p>作成日: {{ post.created_at }}</p>
             <p>更新日: {{ post.updated_at }}</p>
@@ -14,7 +14,8 @@
             </div>
         </article>
         <a class="button is-primary" href="{% url 'blog:comment_create' post.pk %}">コメントする</a>
-
+        <a class="button is-primary" href="{% url 'blog:post_update' post.pk %}">更新</a>
+        <a class="button is-primary" href="{% url 'blog:post_delete' post.pk %}">削除</a>
         <section class="section">
             {% for comment in post.comment_set.all %}
                 <div class="box">

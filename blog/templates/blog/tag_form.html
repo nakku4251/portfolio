@@ -1,14 +1,12 @@
 {% extends "blog/crud_base.html" %}
 
 {% block content %}
-  <a href="{% url 'blog:tag_create' %}">タグの追加</a>
-  <a href="{% url 'blog:category_create' %}">カテゴリの追加</a>
   <form action="" method="POST">
     {{ form.as_p }}
     {% if form.instance.pk %}
       <p>{{ form.instance.created_at }}</p>
     {% endif %}
     {% csrf_token %}
-    <button type="submit">新規作成</button>
+    <button type="submit">タグの追加</button>
   </form>
 {% endblock %}

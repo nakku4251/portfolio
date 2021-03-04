@@ -7,30 +7,19 @@
     <title>Hogeブログ</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+
+
 </head>
 <body>
-<header class="hero is-primary">
+<header class="hero hero is-primary">
     <div class="hero-body">
         <div class="container">
             <h1 class="title"><a href="{% url 'blog:post_list' %}">Hogeブログ</a></h1>
-            <h2 class="subtitle">色々な記事を書いています</h2>
+            <h2 class="subtitle"><a href="{% url 'blog:post_create' %}">新規作成</a></h2>
         </div>
     </div>
 </header>
 
-<section class="level">
-    <div class="level-left"></div>
-    <div class="level-right">
-        <div class="level-item tabs">
-            <ul>
-                <li><a href="{% url 'blog:post_create' %}">新規作成</a></li>
-                <li><a>削除</a></li>
-                <li><a>更新</a></li>
-            </ul>
-        </div>
-    </div>
-    <div class="level-right"></div>
-</section>
 <div class="section">
     <div class="container">
         <div class="columns">
@@ -41,9 +30,11 @@
                 {% create_category_and_tag_list %}
                 {% create_search_form request %}
             </aside>
+
         </div>
     </div>
 </div>
+
 
 </body>
 </html>

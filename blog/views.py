@@ -1,15 +1,15 @@
 from django.db.models import Q
 from django.shortcuts import get_object_or_404, redirect
-from django.views import generic
-from .forms import CommentCreateForm, PostSearchForm, PostCreateForm
-from .models import Post, Comment, Tag, Category
 from django.urls import reverse_lazy
+from django.views import generic
+from .forms import CommentCreateForm, PostSearchForm, PostCreateForm, TagCreateForm, CategoryCreateForm
+from .models import Post, Comment, Tag, Category
 
 
 class PostList(generic.ListView):
     model = Post
     ordering = "-created_at"
-    paginate_by = 1
+    paginate_by = 4
 
     def get_queryset(self):
         queryset = super().get_queryset()
@@ -54,7 +54,7 @@ class CommentCreate(generic.CreateView):
 class PostCategoryList(generic.ListView):
     model = Post
     ordering = "-created_at"
-    paginate_by = 1
+    paginate_by = 4
 
     def get_queryset(self):
         category = get_object_or_404(Category, pk=self.kwargs["pk"])
@@ -64,7 +64,7 @@ class PostCategoryList(generic.ListView):
 class PostTagList(generic.ListView):
     model = Post
     ordering = "created_at"
-    paginate_by = 1
+    paginate_by = 4
 
     def get_queryset(self):
         tag = get_object_or_404(Tag, pk=self.kwargs["pk"])
@@ -74,4 +74,27 @@ class PostTagList(generic.ListView):
 class PostCreate(generic.CreateView):
     model = Post
     form_class = PostCreateForm
+    success_url = reverse_lazy("blog:post_list")
+
+
+class TagCreate(generic.CreateView):
+    template_name = 'blog/tag_form.html'
+    form_class = TagCreateForm
+    success_url = reverse_lazy("blog:post_create")
+
+
+class CategoryCreate(generic.CreateView):
+    template_name = 'blog/category_form.html'
+    form_class = CategoryCreateForm
+    success_url = reverse_lazy("blog:post_create")
+
+
+class PostUpdate(generic.UpdateView):
+    model = Post
+    form_class = PostCreateForm
+    success_url = reverse_lazy("blog:post_list")
+
+
+class PostDelete(generic.DeleteView):
+    model = Post
     success_url = reverse_lazy("blog:post_list")

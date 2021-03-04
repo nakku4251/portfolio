@@ -39,3 +39,15 @@ class PostCreateForm(forms.ModelForm):
     class Meta:
         model = Post
         fields = "__all__"
+
+
+class TagCreateForm(forms.ModelForm):
+    class Meta:
+        model = Tag
+        fields = "__all__"
+
+
+class CategoryCreateForm(forms.ModelForm):
+    class Meta:
+        model = Category
+        fields = "__all__"

@@ -24,7 +24,7 @@ class Post(models.Model):
     text = models.TextField("本文")
     category = models.ForeignKey(Category, on_delete=models.PROTECT, verbose_name="カテゴリ")
 
-    tags = models.ManyToManyField(Tag, verbose_name="タグ", blank=True)
+    tags = models.ManyToManyField(Tag, verbose_name="タグ", help_text="controlかcommand長押しで複数選択", blank=True)
     writer = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.PROTECT, verbose_name="投稿者")
 
     created_at = models.DateTimeField("作成日", auto_now_add=True)
