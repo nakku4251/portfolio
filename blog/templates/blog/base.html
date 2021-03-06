@@ -15,8 +15,18 @@
     <div class="hero-body">
         <div class="container">
             <h1 class="title"><a href="{% url 'blog:post_list' %}">Hogeブログ</a></h1>
+            {% if user.id %}
             <h2 class="subtitle"><a href="{% url 'blog:post_create' %}">新規作成</a></h2>
-            <h2><a href="{% url 'blog:create' %}">アカウント作成</a></h2>
+            {% endif %}
+            {% if user.id  %}
+                <p>ログインしました．</p>
+                <p>こんにちは，{{ user.username }}さん</p>
+                <a href="{% url 'blog:logout' %}">ログアウトする</a>
+            {% else %}
+                <a href="{% url 'blog:login' %}">ログイン</a>
+                <a href="{% url 'blog:create' %}">アカウント作成</a>
+            {% endif %}
+
         </div>
     </div>
 </header>

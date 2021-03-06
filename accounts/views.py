@@ -15,6 +15,7 @@ class MyLoginView(LoginView):
 class MyLogoutView(LoginRequiredMixin, LogoutView):
     template_name = "accounts/logout.html"
 
+
 class IndexView(TemplateView):
     template_name = "accounts/index.html"
 

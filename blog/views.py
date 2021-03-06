@@ -44,6 +44,8 @@ class PostDetail(generic.DetailView):
     model = Post
 
 
+
+
 class CommentCreate(generic.CreateView):
     model = Comment
     form_class = CommentCreateForm
@@ -101,25 +103,28 @@ class PostUpdate(generic.UpdateView):
     success_url = reverse_lazy("blog:post_list")
 
 
+class PostDelete(generic.DeleteView):
+    model = Post
+    success_url = reverse_lazy("blog:post_list")
+
+
 class MyLoginView(LoginView):
     form_class = forms.LoginForm
-    template_name = "accounts/accounts_login.html"
+    template_name = "blog/account_login.html"
 
 
 class MyLogoutView(LoginRequiredMixin, LogoutView):
-    template_name = "accounts/accounts_logout.html"
+    template_name = "blog/account_logout.html"
+    success_url = reverse_lazy("blog:post_list")
 
 
 class IndexView(TemplateView):
-    template_name = "accounts/accounts_index.html"
+    template_name = "blog/account_index.html"
 
 
 class UserCreateView(CreateView):
     form_class = UserCreationForm
-    template_name = "accounts/accounts_create.html"
-    success_url = reverse_lazy("login")
+    template_name = "blog/account_create.html"
+    success_url = reverse_lazy("blog:login")
 
 
-class PostDelete(generic.DeleteView):
-    model = Post
-    success_url = reverse_lazy("blog:post_list")
