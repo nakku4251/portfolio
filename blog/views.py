@@ -103,20 +103,20 @@ class PostUpdate(generic.UpdateView):
 
 class MyLoginView(LoginView):
     form_class = forms.LoginForm
-    template_name = "accounts/login.html"
+    template_name = "accounts/accounts_login.html"
 
 
 class MyLogoutView(LoginRequiredMixin, LogoutView):
-    template_name = "accounts/logout.html"
+    template_name = "accounts/accounts_logout.html"
 
 
 class IndexView(TemplateView):
-    template_name = "accounts/index.html"
+    template_name = "accounts/accounts_index.html"
 
 
 class UserCreateView(CreateView):
     form_class = UserCreationForm
-    template_name = "accounts/create.html"
+    template_name = "accounts/accounts_create.html"
     success_url = reverse_lazy("login")
 
 

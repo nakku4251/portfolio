@@ -53,10 +53,10 @@ class CategoryCreateForm(forms.ModelForm):
         model = Category
         fields = "__all__"
 
+from django.contrib.auth import forms as auth_forms
 
 class LoginForm(auth_forms.AuthenticationForm):
-    """ログインフォーム"""
-
+    '''ログインフォーム'''
     def __init__(self, *args, **kw):
         super().__init__(*args, **kw)
         for field in self.fields.values():
