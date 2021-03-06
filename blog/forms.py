@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth import get_user_model
 from .models import Comment, Category, Tag, Post
+from django.contrib.auth import forms as auth_forms
 
 User = get_user_model()
 
@@ -51,3 +52,12 @@ class CategoryCreateForm(forms.ModelForm):
     class Meta:
         model = Category
         fields = "__all__"
+
+
+class LoginForm(auth_forms.AuthenticationForm):
+    """ログインフォーム"""
+
+    def __init__(self, *args, **kw):
+        super().__init__(*args, **kw)
+        for field in self.fields.values():
+            field.widget.attrs['placeholder'] = field.label
