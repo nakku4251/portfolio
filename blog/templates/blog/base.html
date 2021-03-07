@@ -20,12 +20,14 @@
             {% endif %}
             {% if user.id  %}
                 <p>ログインしました．</p>
-                <p>こんにちは，{{ user.username }}さん</p>
+                <p>こんにちは、{{ user.username }}さん</p>
                 <a href="{% url 'blog:logout' %}">ログアウトする</a>
+                <a>作成した記事をみる</a>
             {% else %}
                 <a href="{% url 'blog:login' %}">ログイン</a>
                 <a href="{% url 'blog:create' %}">アカウント作成</a>
             {% endif %}
+
 
         </div>
     </div>
