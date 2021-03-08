@@ -12,6 +12,36 @@ from django.urls import reverse_lazy  # 追記
 from . import forms
 
 
+class LoginPostList(generic.ListView):
+    template_name = "blog/login_post_list.html"
+    model = Post
+    ordering = "-created_at"
+    paginate_by = 4
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        form = PostSearchForm(self.request.GET or None)
+        if self.request.user.is_authenticated:
+            queryset = queryset.filter(writer=self.request.user)
+        if form.is_valid():
+            key_word = form.cleaned_data.get('key_word')
+            if key_word:
+                queryset = queryset.filter(Q(title__icontains=key_word) | Q(text__icontains=key_word))
+
+            category = form.cleaned_data.get('category')
+            if category:
+                queryset = queryset.filter(category=category)
+
+            tags = form.cleaned_data.get('tags')
+            if tags:
+                queryset = queryset.filter(tags__in=tags).distinct()
+
+            user = form.cleaned_data.get('user')
+            if user:
+                queryset = queryset.filter(writer=user)
+
+        return queryset
+
 class PostList(generic.ListView):
     model = Post
     ordering = "-created_at"
@@ -38,6 +68,10 @@ class PostList(generic.ListView):
                 queryset = queryset.filter(writer=user)
 
         return queryset
+
+
+
+
 
 
 class PostDetail(generic.DetailView):

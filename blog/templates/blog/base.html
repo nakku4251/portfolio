@@ -22,7 +22,7 @@
                 <p>ログインしました．</p>
                 <p>こんにちは、{{ user.username }}さん</p>
                 <a href="{% url 'blog:logout' %}">ログアウトする</a>
-                <a>作成した記事をみる</a>
+                <a href="{% url 'blog:login_post_list' %}">作成した記事をみる</a>
             {% else %}
                 <a href="{% url 'blog:login' %}">ログイン</a>
                 <a href="{% url 'blog:create' %}">アカウント作成</a>
