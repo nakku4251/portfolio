@@ -1,5 +1,6 @@
 from django.db import models
 from django.conf import settings
+from django.contrib.auth import get_user_model
 
 
 # Create your models here.
@@ -23,10 +24,8 @@ class Post(models.Model):
     title = models.CharField("タイトル", max_length=32)
     text = models.TextField("本文")
     category = models.ForeignKey(Category, on_delete=models.PROTECT, verbose_name="カテゴリ")
-
     tags = models.ManyToManyField(Tag, verbose_name="タグ", help_text="controlかcommand長押しで複数選択", blank=True)
     writer = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.PROTECT, verbose_name="投稿者")
-
     created_at = models.DateTimeField("作成日", auto_now_add=True)
     updated_at = models.DateTimeField("更新日", auto_now=True)
 

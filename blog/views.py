@@ -77,6 +77,10 @@ class PostList(generic.ListView):
 class PostDetail(generic.DetailView):
     model = Post
 
+class LoginPostDetail(generic.DetailView):
+    template_name = "blog/login_post_detail.html"
+    model = Post
+
 
 
 

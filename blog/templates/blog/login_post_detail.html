@@ -14,6 +14,10 @@
             </div>
         </article>
         <a class="button is-primary" href="{% url 'blog:comment_create' post.pk %}">コメントする</a>
+        {% if user.id %}
+        <a class="button is-primary" href="{% url 'blog:post_update' post.pk %}">更新</a>
+        <a class="button is-primary" href="{% url 'blog:post_delete' post.pk %}">削除</a>
+        {% endif %}
         <section class="section">
             {% for comment in post.comment_set.all %}
                 <div class="box">
