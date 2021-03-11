@@ -21,7 +21,7 @@ class LoginPostList(generic.ListView):
     def get_queryset(self):
         queryset = super().get_queryset()
         form = PostSearchForm(self.request.GET or None)
-        """↓の２行でログインユーザの記事を絞り込み可能"""
+        # ↓の２行でログインユーザの記事を絞り込み可能
         if self.request.user.is_authenticated:
             queryset = queryset.filter(writer=self.request.user)
         if form.is_valid():
@@ -42,7 +42,6 @@ class LoginPostList(generic.ListView):
                 queryset = queryset.filter(writer=user)
 
         return queryset
-
 
 
 class PostList(generic.ListView):
@@ -66,28 +65,20 @@ class PostList(generic.ListView):
             if tags:
                 queryset = queryset.filter(tags__in=tags).distinct()
 
-            user = form.cleaned_data.get('user')
-            if user:
-                queryset = queryset.filter(writer=user)
+            key_word = form.cleaned_data.get('key_word')
+            if key_word:
+                queryset = queryset.filter(writer__icontains=key_word)
 
         return queryset
-
-
-
-
-
-
-
 
 
 class PostDetail(generic.DetailView):
     model = Post
 
+
 class LoginPostDetail(generic.DetailView):
     template_name = "blog/login_post_detail.html"
     model = Post
-
-
 
 
 class CommentCreate(generic.CreateView):
@@ -128,21 +119,17 @@ class PostCreate(generic.CreateView):
     form_class = PostCreateForm
     success_url = reverse_lazy("blog:post_list")
 
-    class PostCreate(generic.CreateView):
-        model = Post
-        form_class = PostCreateForm
-        success_url = reverse_lazy("blog:post_list")
-
-        def form_valid(self, form):
-            # commit=Falseを入れることで保存前のインスタンスを生成
-            instance = form.save(commit=False)
-            # ユーザ情報追加
-            instance.writer = self.request.user
-            # 保存(タグ以外)
-            instance.save()
-            # タグがManyToManyなので以下が必要
-            form.save_m2m()
-            return redirect('blog:post_list')
+    # ログインしているユーザ名をwriterモデルに自動で追加
+    def form_valid(self, form):
+        # commit=Falseを入れることで保存前のインスタンスを生成
+        instance = form.save(commit=False)
+        # ユーザ情報追加
+        instance.writer = self.request.user
+        # 保存(タグ以外)
+        instance.save()
+        # タグがManyToManyなので以下が必要
+        form.save_m2m()
+        return redirect('blog:post_list')
 
 
 class TagCreate(generic.CreateView):
@@ -186,5 +173,3 @@ class UserCreateView(CreateView):
     form_class = UserCreationForm
     template_name = "blog/account_create.html"
     success_url = reverse_lazy("blog:login")
-
-
