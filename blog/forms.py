@@ -30,9 +30,10 @@ class PostSearchForm(forms.Form):
         label="タグの選択", required=False,
         queryset=Tag.objects.all(),
     )
-    user = forms.ModelChoiceField(
+
+    user = forms.CharField(
         label="投稿者", required=False,
-        queryset=User.objects.all(),
+        widget=forms.TextInput(attrs={"class": "input"})
     )
 
 

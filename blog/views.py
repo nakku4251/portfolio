@@ -65,9 +65,9 @@ class PostList(generic.ListView):
             if tags:
                 queryset = queryset.filter(tags__in=tags).distinct()
 
-            key_word = form.cleaned_data.get('key_word')
-            if key_word:
-                queryset = queryset.filter(writer__icontains=key_word)
+            user = form.cleaned_data.get('user')
+            if user:
+                queryset = queryset.filter(writer=user)
 
         return queryset
 
