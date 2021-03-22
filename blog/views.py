@@ -38,8 +38,9 @@ class LoginPostList(generic.ListView):
                 queryset = queryset.filter(tags__in=tags).distinct()
 
             user = form.cleaned_data.get('user')
+            # writerモデルの外部キー(django組み込みuserモデル)のusernameフィールドで記事投稿者の絞りこみ。
             if user:
-                queryset = queryset.filter(writer=user)
+                queryset = queryset.filter(writer__username__icontains=user)
 
         return queryset
 
@@ -66,8 +67,9 @@ class PostList(generic.ListView):
                 queryset = queryset.filter(tags__in=tags).distinct()
 
             user = form.cleaned_data.get('user')
+            # 外部キー(django組み込みuserモデル)のusernameフィールドで絞り込み。
             if user:
-                queryset = queryset.filter(writer=user)
+                queryset = queryset.filter(writer__username__icontains=user)
 
         return queryset
 

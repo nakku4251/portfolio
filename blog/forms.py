@@ -18,7 +18,8 @@ class CommentCreateForm(forms.ModelForm):
 class PostSearchForm(forms.Form):
     key_word = forms.CharField(
         label="キーワード", required=False,
-        widget=forms.TextInput(attrs={"class": "input"})
+        widget=forms.TextInput(attrs={"class": "input"}),
+        initial = "タイトル、本文"
     )
 
     category = forms.ModelChoiceField(
@@ -33,7 +34,8 @@ class PostSearchForm(forms.Form):
 
     user = forms.CharField(
         label="投稿者", required=False,
-        widget=forms.TextInput(attrs={"class": "input"})
+        widget=forms.TextInput(attrs={"class": "input"}),
+        initial="投稿者"
     )
 
 
