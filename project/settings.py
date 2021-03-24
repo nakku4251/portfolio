@@ -125,4 +125,5 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 LOGIN_URL = 'login' # ログインしていないときのリダイレクト先
 LOGIN_REDIRECT_URL = 'blog:post_list' # ログイン後のリダイレクト先
 LOGOUT_REDIRECT_URL = 'blog:post_list' # ログアウト後のリダイレクト先
-
+MEDIA_ROOT = os.path.join(BASE_DIR,"media")
+MEDIA_URL = "/media/"
