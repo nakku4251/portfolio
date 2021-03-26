@@ -33,7 +33,7 @@ class PostSearchForm(forms.Form):
 
     user = forms.CharField(
         label="投稿者", required=False,
-        widget=forms.TextInput(attrs={"placeholder": "投稿者","class": "input"}),
+        widget=forms.TextInput(attrs={'placeholder': '投稿者', "class": "input"}),
     )
 
 
