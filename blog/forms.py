@@ -18,8 +18,7 @@ class CommentCreateForm(forms.ModelForm):
 class PostSearchForm(forms.Form):
     key_word = forms.CharField(
         label="キーワード", required=False,
-        widget=forms.TextInput(attrs={"class": "input"}),
-        initial = "タイトル、本文"
+        widget=forms.TextInput(attrs={'placeholder': 'タイトル、本文', "class": "input"}),
     )
 
     category = forms.ModelChoiceField(
