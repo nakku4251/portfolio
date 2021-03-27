@@ -10,8 +10,9 @@
         *{
           margin: 0;
         }
-
-
+        p.a {
+            font-size: 40px
+            }
         body {
             width: 600px;
             margin: 0 auto;
@@ -49,16 +50,7 @@
         }
     </style>
 </head>
-<header class="hero is-primary">
-    <div class="hero-body">
-        <div class="container">
-            <h1 class="title"><a href="{% url 'blog:post_list' %}">Hogeブログ</a></h1>
-            <h2 class="subtitle">色々な記事を書いています</h2>
-        </div>
-    </div>
-</header>
 <body>
-
 <main>
     {% block content %}{% endblock %}
 </main>
