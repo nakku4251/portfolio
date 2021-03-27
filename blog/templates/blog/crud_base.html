@@ -7,48 +7,48 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
     <style>
-        * {
-            margin: 0;
-           }
+        *{
+          margin: 0;
+        }
 
 
+        body {
+            width: 600px;
+            margin: 0 auto;
+            margin-top: 100px;
+        }
 
         .errorlist {
             margin: 0;
             padding: 0;
             list-style-type: none;
             color: red;
-           }
+        }
 
         div.field {
             margin-bottom: 20px;
-           }
+        }
 
         div.field > span.helptext {
-            font-size: 12px;
+            font-size: 14px;
             color: #999;
-           }
+        }
 
         div.field > label {
             display: block;
-            margin-left: 500px;
-           }
+        }
 
         div.field > input,
         div.field > textarea,
         div.field > select {
-            width: 30%;
+            width: 100%;
             padding: 6px 12px;
             box-sizing: border-box;
             border-radius: 4px;
             border: solid 1px #999;
-            margin-left: 500px;
-            }
-
-
+        }
     </style>
 </head>
-<body>
 <header class="hero is-primary">
     <div class="hero-body">
         <div class="container">
@@ -57,6 +57,10 @@
         </div>
     </div>
 </header>
+<body>
+
 <main>
     {% block content %}{% endblock %}
 </main>
+</body>
+</html>
