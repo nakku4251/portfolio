@@ -149,6 +149,7 @@ class CategoryCreate(generic.CreateView):
 class PostUpdate(generic.UpdateView):
     model = Post
     form_class = PostCreateForm
+    template_name = "blog/post_update.html"
     success_url = reverse_lazy("blog:post_list")
 
 
