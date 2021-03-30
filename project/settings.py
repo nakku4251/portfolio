@@ -26,7 +26,7 @@ SECRET_KEY = 'mqn*m6v4id$oa$uj^%*z-@0bf1=#j+d!f_*c9d$fn@o_g45mq)'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['nakku.pythonanywhere.com']
 
 
 # Application definition
